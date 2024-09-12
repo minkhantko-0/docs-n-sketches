@@ -1,4 +1,5 @@
-import { Metadata } from "next";
+import { Button } from "@/components/ui/button";
+import { Ghost } from "lucide-react";
 import { Autour_One } from "next/font/google";
 
 const autour = Autour_One({
@@ -8,11 +9,6 @@ const autour = Autour_One({
   weight: "400",
   style: "normal",
 });
-
-export const metaData: Metadata = {
-  title: "Docs & Sketches",
-  description: "Document your vision, sketch your ideas",
-};
 
 function Hero() {
   return (
@@ -29,25 +25,22 @@ function Hero() {
             </span>
           </h1>
 
-          <p className="mt-4 sm:text-xl/relaxed">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
-            illo tenetur fuga ducimus numquam ea!
+          <br />
+
+          <p className="sm:text-xl/relaxed ">
+            All in one markdown editor with support for sketching and diagrams
+            for engineering teams.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <a
-              className="block w-full rounded bg-red-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
-              href="#"
-            >
-              Get Started
-            </a>
-
-            <a
-              className="block w-full rounded px-12 py-3 text-sm font-medium text-secondary shadow hover:text-secondary/20 focus:outline-none focus:ring active:text-secondary/25 sm:w-auto"
-              href="#"
+            <Button
+              variant={"outline"}
+              size={"lg"}
+              className="border-slate-500 border-2 hover:text-slate-500"
+              style={autour.style}
             >
               Learn More
-            </a>
+            </Button>
           </div>
         </div>
       </div>
