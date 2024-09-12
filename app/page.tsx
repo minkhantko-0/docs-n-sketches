@@ -1,5 +1,11 @@
-import Image from "next/image";
+import Header from "./_components/header";
+import Hero from "./_components/hero";
 
 export default function Home() {
-  return <div>Hello world!</div>;
+  return (
+    <main className="h-screen overflow-hidden">
+      <Header />
+      <Hero />
+    </main>
+  );
 }
