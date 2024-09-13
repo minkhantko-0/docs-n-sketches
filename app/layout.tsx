@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import { ConvexClientProvider } from "./CovexClientProvider";
 
 const opensSans = Open_Sans({
   subsets: ["latin"],
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body style={opensSans.style}>{children}</body>
+      <body style={opensSans.style}>
+        <ConvexClientProvider>{children}</ConvexClientProvider>
+      </body>
     </html>
   );
 }
