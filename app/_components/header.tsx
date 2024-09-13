@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 import Image from "next/image";
-import React from "react";
 
 function Header() {
   return (
@@ -74,12 +74,20 @@ function Header() {
 
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
-              <Button variant={"ghost"} className="block" size="sm">
-                Login
-              </Button>
-              <Button variant={"outline"} className="hidden sm:block" size="sm">
-                Register
-              </Button>
+              <LoginLink postLoginRedirectURL="/dashboard">
+                <Button variant={"ghost"} className="block" size="sm">
+                  Login
+                </Button>
+              </LoginLink>
+              <RegisterLink>
+                <Button
+                  variant={"outline"}
+                  className="hidden sm:block"
+                  size="sm"
+                >
+                  Register
+                </Button>
+              </RegisterLink>
             </div>
 
             <button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
