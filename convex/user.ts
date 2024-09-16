@@ -7,7 +7,7 @@ export const getByEmail = query({
   },
   handler: async (ctx, args) => {
     return await ctx.db
-      .query("user")
+      .query("users")
       .filter((q) => q.eq(q.field("email"), args.email))
       .collect();
   },
@@ -20,6 +20,6 @@ export const create = mutation({
     image: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    return await ctx.db.insert("user", args);
+    return await ctx.db.insert("users", args);
   },
 });
