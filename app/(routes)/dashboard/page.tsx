@@ -5,29 +5,34 @@ import {
   LogoutLink,
   useKindeBrowserClient,
 } from "@kinde-oss/kinde-auth-nextjs";
-import { useMutation, useQuery } from "convex/react";
+import { useConvex, useMutation, useQuery } from "convex/react";
 import { useEffect } from "react";
 
 function Dashboard() {
+  const convex = useConvex();
   const { user, isLoading } = useKindeBrowserClient();
-
-  const users = useQuery(api.user.getByEmail, {
-    email: user?.email as string,
-  });
 
   const createUser = useMutation(api.user.create);
 
+  const userExists = async () => {
+    if (!user) return;
+    const users = await convex.query(api.user.getByEmail, {
+      email: user?.email as string,
+    });
+    if (users?.length === 0) {
+      createUser({
+        name: user.given_name!,
+        email: user.email!,
+        image: user.picture ? user.picture : undefined,
+      }).then((res) => console.log(res));
+    }
+  };
+
   useEffect(() => {
     if (user && !isLoading) {
-      if (users === null || users?.length === 0) {
-        createUser({
-          name: user.given_name!,
-          email: user.email!,
-          image: user.picture ? user.picture : undefined,
-        }).then((res) => console.log(res));
-      }
+      userExists();
     }
-  }, [user, users]);
+  }, [user]);
 
   return (
     <div>
